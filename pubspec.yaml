@@ -1,0 +1,8 @@
+name: the_umpteenth_logger_workspace
+
+environment:
+  sdk: '>=2.18.0 <4.0.0'
+
+dev_dependencies:
+  melos: ^3.2.0
+  very_good_analysis: ^5.1.0
