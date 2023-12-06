@@ -36,14 +36,6 @@ class NthLogger {
     ),
   );
 
-  static final HiveLogPrinter hiveLogPrinter = HiveLogPrinter(
-    minLevel: LoggerLevel.trace,
-    formatter: const Formatter(
-      useColors: false,
-      colorOnlyLevel: false,
-    ),
-  );
-
   static Set<Printer> _printers = {
     // Enable a console log.
     if (kDebugMode) NthLogger.devLogPrinter else NthLogger.consolePrinter,

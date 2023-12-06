@@ -4,7 +4,6 @@ import '../../the_umpteenth_logger.dart';
 
 export 'console_printer.dart';
 export 'dev_log_printer.dart';
-export 'hive_log_printer.dart';
 
 /// {@template printer}
 /// A printer is responsible for printing the log message.

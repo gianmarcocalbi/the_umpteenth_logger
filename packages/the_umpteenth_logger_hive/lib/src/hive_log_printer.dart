@@ -1,11 +1,13 @@
-// ignore_for_file: comment_references, type_annotate_public_apis
-
 import 'dart:async';
 
 import 'package:hive/hive.dart';
-import '../../the_umpteenth_logger.dart';
+import 'package:the_umpteenth_logger/the_umpteenth_logger.dart';
 
+/// {@template hive_log_printer}
+/// A printer that prints log messages to a Hive box.
+/// {@endtemplate}
 class HiveLogPrinter extends Printer {
+  /// {@macro hive_log_printer}
   HiveLogPrinter({
     this.retentionDays = 7,
     required super.minLevel,
@@ -61,9 +63,7 @@ class HiveLogPrinter extends Printer {
   /// date-time and a log message for that date-time) that is a session of
   /// logs. The sessions are sorted from the most recent (ASC) while logs are
   /// sorted from the oldest (DESC)
-  List<Map<DateTime, String>> getLogsBySession({
-    required DateTime fromDateTime,
-  }) {
+  List<Map<DateTime, String>> getLogsBySession(DateTime fromDateTime) {
     final allLogKeys = [..._box?.keys ?? []];
     final allSessions = <Map<DateTime, String>>[];
     var session = <DateTime, String>{};

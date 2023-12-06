@@ -11,8 +11,6 @@ dependencies:
   ansicolor: ^2.0.2
   flutter:
     sdk: flutter
-  hive: ^2.2.3
-  hive_flutter: ^1.1.0
   intl: ^0.18.0
 
 dev_dependencies:
