@@ -1,7 +1,5 @@
-library the_umpteenth_logger;
+/// The Nth Logger package.
+library logger;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'src/logger/nth_logger.dart';
+export 'src/printer/printer.dart';

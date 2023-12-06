@@ -30,7 +30,6 @@ linter:
     prefer_function_declarations_over_variables: false
     prefer_interpolation_to_compose_strings: false
     prefer_relative_imports: true
-    public_member_api_docs: false
     sort_constructors_first: false
     unawaited_futures: true
     unnecessary_await_in_return: true
