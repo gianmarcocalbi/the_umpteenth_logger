@@ -9,9 +9,9 @@ import 'package:the_umpteenth_logger/the_umpteenth_logger.dart';
 class HiveLogPrinter extends Printer {
   /// {@macro hive_log_printer}
   HiveLogPrinter({
-    this.retentionDays = 7,
     required super.minLevel,
     required super.formatter,
+    this.retentionDays = 7,
   });
 
   final int retentionDays;

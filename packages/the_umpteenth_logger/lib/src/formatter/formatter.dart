@@ -10,14 +10,19 @@ import '../common/logger_level.dart';
 class Formatter {
   const Formatter({
     this.useColors = true,
+    this.includeClassReference = false,
     this.colorOnlyLevel = false,
     this.colorEachLine = false,
   });
 
+  final bool includeClassReference;
   final bool useColors;
   final bool colorOnlyLevel;
   final bool colorEachLine;
   static const int sourceLength = 20;
+
+  static final RegExp _classReference =
+      RegExp(r'^#\d+\s+(?<method>.+) \(.+\/[^\/\:]+\:(?<line>[0-9:]+)\).*$');
 
   static final Map<LoggerLevel, String> _prefixes = {
     LoggerLevel.trace: '[TRACE]',
@@ -41,7 +46,7 @@ class Formatter {
     if (source.length > sourceLength) {
       return source.substring(0, sourceLength);
     } else if (source.length < sourceLength) {
-      return source.padRight(sourceLength, '-');
+      return source.padRight(sourceLength, '─');
     }
     return source;
   }
@@ -80,6 +85,20 @@ class Formatter {
 
     // Format message
     var msg = _stringifyMessage(message);
+    if (includeClassReference) {
+      final line = StackTrace.current.toString().split('\n').firstWhere(
+            (line) => !line.contains('package:the_umpteenth_logger'),
+            orElse: () => '',
+          );
+      if (line.isNotEmpty) {
+        final match = _classReference.firstMatch(line);
+        if (match != null) {
+          final method = match.namedGroup('method')!;
+          final line = match.namedGroup('line')!;
+          msg = '$msg [$method:$line]';
+        }
+      }
+    }
 
     // Format stackTrace and error
     final st = stackTrace == null ? '' : '\n\n## STACKTRACE\n$stackTrace';

@@ -20,7 +20,7 @@ class ConsolePrinter extends Printer {
     LoggerLevel level,
     String source,
     Zone zone,
-    message, [
+    dynamic message, [
     dynamic error,
     StackTrace? stackTrace,
   ]) {
