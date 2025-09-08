@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:ansicolor/ansicolor.dart';
-import 'package:intl/intl.dart';
 
 import '../common/log_item.dart';
 import '../common/logger_level.dart';
@@ -69,12 +68,16 @@ class Formatter {
     StackTrace? stackTrace,
   ]) {
     assert(message != null, 'Message must not be null');
-    final dateTime = DateTime.now().toUtc();
+    final dt = DateTime.now().toUtc();
     ansiColorDisabled = false;
     final String Function(String) col = _colors[level]!.call;
 
     // Format the time as string
-    final time = DateFormat('HH:mm:ss.SSS').format(dateTime);
+    final hh = dt.hour.toString().padLeft(2, '0');
+    final mm = dt.minute.toString().padLeft(2, '0');
+    final ss = dt.second.toString().padLeft(2, '0');
+    final ms = dt.millisecond.toString().padLeft(3, '0');
+    final time = '$hh:$mm:$ss.$ms';
 
     // Format source
     final src = _uniformSourceLength(source);
@@ -131,7 +134,7 @@ $error$st
       timestamp: time,
       prefix: prefix,
       error: err,
-      dateTime: dateTime,
+      dateTime: dt,
     );
   }
 }
